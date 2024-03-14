@@ -54,11 +54,11 @@ char board[3][3] = {
 Inicialmente todas las "celdas" del tablero se encuentran vacías, lo que se representa con el carácter **'-'**. Los caracteres **'X'** y **'O'** de acuerdo a su turno, teniendo la posibilidad de elegit con un número entero en qué cekda desea marcar el tablero. Las nueve celdas del tablero se encuentran numeradas de la siguiente forma:
 ```c
 .................................................
-| 0: -			| 1: - 			| 2: - 			|
+| 0: -		| 1: - 		| 2: - 		|
 .................................................
-| 3: - 			| 4: - 			| 5: - 			|
+| 3: - 		| 4: - 		| 5: - 		|
 .................................................
-| 6: - 			| 7: - 			| 8: - 			|
+| 6: - 		| 7: - 		| 8: - 		|
 .................................................
 ```
 El juego está incompleto puesto que no detecta cuándo hubo un ganador, o si hubo empate. Para ello se deben implementar correctamente las funciones:
