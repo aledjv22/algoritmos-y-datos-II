@@ -95,4 +95,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# gcc outputs
+*/*.out
+*/*.o
+
 # End of https://www.toptal.com/developers/gitignore/api/linux,macos,windows,visualstudiocode
