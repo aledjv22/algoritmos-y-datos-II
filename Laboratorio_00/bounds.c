@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define ARRAY_SIZE 4
-
 struct bound_data {
     bool is_upperbound;
     bool is_lowerbound;
@@ -11,27 +9,71 @@ struct bound_data {
     unsigned int where;
 };
 
+static void print_array(int arr[], unsigned int length) {
+    printf("\nTu array es: [");
+    for(unsigned int i = 0; i < length; ++i) {
+        printf("%d", arr[i]);
+        if(i < length - 1) printf (", ");
+    }
+    printf("]\n");
+}
+
+static void input_numbers(int arr[], unsigned int length) {
+    for(unsigned int i = 0; i < length; ++i) {
+        printf("Ingrese su nro. %d: ", i);
+        scanf("%d", &arr[i]);
+    }
+}
+
 struct bound_data check_bound(int value, int arr[], unsigned int length) {
     struct bound_data res;
-    //
-    // TODO: COMPLETAR
-    //
+    res.is_upperbound = false;
+    res.is_lowerbound = false;
+    res.exists = false;
+
+    for(unsigned int i = 0; i < length; ++i) {
+        if(arr[i] == value && !res.exists) {
+            res.exists = true;
+            res.where = i;
+        }else if(arr[i] < value) res.is_upperbound = true;
+        else if(arr[i] > value) res.is_lowerbound = true;
+    }
+
     return res;
 }
 
 int main(void) {
-    int a[ARRAY_SIZE] = {0, -1, 9, 4};
-    int value=9;
-    //
-    // TODO: COMPLETAR - Pedir entrada al usuario
-    //
-    struct bound_data result = check_bound(value, a, ARRAY_SIZE);
+    unsigned int array_size = 0;
+    int value;
+    printf("Bienvenido/a, a continuación se le solicitaran los datos necesarios para el programa.\n");
 
-    // TODO: REEMPLAZAR LO SIGUIENTE LUEGO POR LA SALIDA QUE PIDE EL ENUNCIADO
-    printf("%d", result.is_upperbound); // Imprime 1
-    printf("%d", result.is_lowerbound); // Imprime 0
-    printf("%u", result.exists);        // Imprime 1
-    printf("%u", result.where);         // Imprime 2
+    while(array_size < 1) {
+        printf("Ingrese el tamaño para su array: ");
+        scanf("%d", &array_size);
+        if(array_size < 1) printf("Por favor ingrese un valor mayor a 0.\n");
+    }
+
+    int a[array_size];
+
+    input_numbers(a, array_size);
+
+    print_array(a, array_size);
+
+    printf("\nIngrese el nro. a comparar: ");
+    scanf("%d", &value);
+    printf("\n");
+
+    struct bound_data result = check_bound(value, a, array_size);
+
+    if (result.exists && result.is_lowerbound)
+        printf("El valor %d está en el array y es el mínimo. Se encuentra en la posición %d.\n", value, result.where);
+    else if (result.exists && result.is_upperbound)
+        printf("El valor %d está en el array y es el máximo. Se encuentra en la posición %d.\n", value, result.where);
+    else if (result.is_lowerbound)
+        printf("El valor %d no está en el array. Es una cota inferior.\n", value);
+    else if (result.is_upperbound)
+        printf("El valor %d no está en el array. Es una cota superior.\n",value);
+    else printf("El valor %d no está en el array. No es un cota superior ni inferior.\n",value);
 
     return EXIT_SUCCESS;
 }
