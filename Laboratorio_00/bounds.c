@@ -27,16 +27,23 @@ static void input_numbers(int arr[], unsigned int length) {
 
 struct bound_data check_bound(int value, int arr[], unsigned int length) {
     struct bound_data res;
-    res.is_upperbound = false;
-    res.is_lowerbound = false;
-    res.exists = false;
 
-    for(unsigned int i = 0; i < length; ++i) {
+    res.is_upperbound = arr[0] <= value;
+    res.is_lowerbound = arr[0] >= value;
+    res.exists = arr[0] == value;
+    if(res.exists) res.where = 0;
+
+    for(unsigned int i = 1; i < length; ++i) {
+        if (!res.is_upperbound && !res.is_lowerbound) break;
+
         if(arr[i] == value && !res.exists) {
             res.exists = true;
             res.where = i;
-        }else if(arr[i] < value) res.is_upperbound = true;
-        else if(arr[i] > value) res.is_lowerbound = true;
+        }
+
+        res.is_upperbound = res.is_upperbound && arr[i] <= value;
+        
+        res.is_lowerbound = res.is_lowerbound && arr[i] >= value;
     }
 
     return res;
