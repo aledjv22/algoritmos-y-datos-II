@@ -51,7 +51,7 @@ char board[3][3] = {
 	{ '-', '-', '-' }
 };
 ```
-Inicialmente todas las "celdas" del tablero se encuentran vacías, lo que se representa con el carácter **'-'**. Los caracteres **'X'** y **'O'** de acuerdo a su turno, teniendo la posibilidad de elegit con un número entero en qué cekda desea marcar el tablero. Las nueve celdas del tablero se encuentran numeradas de la siguiente forma:
+Inicialmente todas las "celdas" del tablero se encuentran vacías, lo que se representa con el carácter **'-'**. Los caracteres **'X'** y **'O'** de acuerdo a su turno, teniendo la posibilidad de elegir con un número entero en qué celda desea marcar el tablero. Las nueve celdas del tablero se encuentran numeradas de la siguiente forma:
 ```c
 .................................................
 | 0: -		| 1: - 		| 2: - 		|
@@ -69,9 +69,9 @@ que devuelve verdadero si hay una celda libre (marcada con '-') en el tablero **
 ```c
 char get_winner(char board[3][3])
 ```
-que devuelve el jugador ganador (**'X'** o **'O'**) si lo hubo, o **'-'** si todav'ia no hay ganador. Para ello se debe recorrer la matriz para verificar si alguna columna, fila o diagonal tiene 3 veces consecutivas el mismo carácter.
+que devuelve el jugador ganador (**'X'** o **'O'**) si lo hubo, o **'-'** si todavía no hay ganador. Para ello se debe recorrer la matriz para verificar si alguna columna, fila o diagonal tiene 3 veces consecutivas el mismo carácter.
 Se pide **leer el código y comprender** cómo se logra el funcionamiento del juego.
 
 ### Ejecicio 3
 1. En un archivo nuevo **tictactoe_gen.c** programar una implementación modificada del ejercicio anterior para hacer un tictactoe que utilice un tablero 4x4 donde el criterio para ganar es que haya 4 marcas iguales en línea en vez de 3.
-2. Modificar la implementación del apartado anterior (en el mismo archivo) para implementar un juego de tictactoe en un tablero 5x5. Si hicieron correctamente el apartado 1. debería salir cambiando un solo símbolo del código. Si requieren más cambios, rehacer el apartado 1..
+2. Modificar la implementación del apartado anterior (en el mismo archivo) para implementar un juego de tictactoe en un tablero 5x5. Si hicieron correctamente el apartado 1 debería salir cambiando un solo símbolo del código. Si requieren más cambios, rehacer el apartado 1.
