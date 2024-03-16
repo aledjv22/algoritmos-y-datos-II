@@ -56,7 +56,7 @@ struct bound_data check_bound(int value, int arr[], unsigned int length) {
 }
 
 int main(void) {
-    unsigned int array_size = 0;
+    int array_size = 0;
     int value;
     printf("Bienvenido/a, a continuación se le solicitaran los datos necesarios para el programa.\n");
 
