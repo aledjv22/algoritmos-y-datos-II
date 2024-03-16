@@ -9,6 +9,7 @@ struct bound_data {
     unsigned int where;
 };
 
+// Imprime el array
 static void print_array(int arr[], unsigned int length) {
     printf("\nTu array es: [");
     for(unsigned int i = 0; i < length; ++i) {
@@ -18,6 +19,7 @@ static void print_array(int arr[], unsigned int length) {
     printf("]\n");
 }
 
+// Pide al usuario que ingrese los valores del array
 static void input_numbers(int arr[], unsigned int length) {
     for(unsigned int i = 0; i < length; ++i) {
         printf("Ingrese su nro. %d: ", i);
@@ -25,24 +27,28 @@ static void input_numbers(int arr[], unsigned int length) {
     }
 }
 
+// Comprueba si el valor está en el array y si es cota superior o inferior
 struct bound_data check_bound(int value, int arr[], unsigned int length) {
     struct bound_data res;
 
+    // Inicializamos los valores de res
     res.is_upperbound = arr[0] <= value;
     res.is_lowerbound = arr[0] >= value;
     res.exists = arr[0] == value;
+    // Si el primer valor es el que buscamos, guardamos su posición
     if(res.exists) res.where = 0;
 
     for(unsigned int i = 1; i < length; ++i) {
+        // Si no es cota superior ni inferior, no tiene sentido seguir buscando
         if (!res.is_upperbound && !res.is_lowerbound) break;
 
+        // Si encontramos el valor, guardamos su posición
         if(arr[i] == value && !res.exists) {
             res.exists = true;
             res.where = i;
         }
 
-        res.is_upperbound = res.is_upperbound && arr[i] <= value;
-        
+        res.is_upperbound = res.is_upperbound && arr[i] <= value;        
         res.is_lowerbound = res.is_lowerbound && arr[i] >= value;
     }
 
@@ -72,6 +78,7 @@ int main(void) {
 
     struct bound_data result = check_bound(value, a, array_size);
 
+    // Imprimimos el resultado
     if (result.exists && result.is_lowerbound)
         printf("El valor %d está en el array y es el mínimo. Se encuentra en la posición %d.\n", value, result.where);
     else if (result.exists && result.is_upperbound)
