@@ -89,6 +89,21 @@ char get_winner_right_diagonal(char board[3][3])
     return winner;
 }
 
+char get_winner_left_diagonal(char board[3][3])
+{
+    char winner = '-';
+    bool is_winner = board[2][0] == board[1][1];
+
+    for(unsigned int i = 1; i < 2; ++i) {
+        is_winner = is_winner && (board[i][3 - i] == board[i][3 - i]);
+        if(!is_winner) break;
+    }
+
+    if(is_winner && (board[2][0] != winner)) winner = board[2][0];
+
+    return winner;
+}
+
 char get_winner(char board[3][3])
 {
     char winner = '-';
@@ -98,6 +113,8 @@ char get_winner(char board[3][3])
     if(winner == '-') winner = get_winner_column(board);
 
     if(winner == '-') winner = get_winner_right_diagonal(board);
+
+    if(winner == '-') winner = get_winner_left_diagonal(board);
 
     return winner;
 }
