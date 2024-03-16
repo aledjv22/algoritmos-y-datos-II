@@ -126,7 +126,6 @@ bool has_free_cell(char board[3][3])
     for(unsigned int row = 0; row < 3; ++row) {
         for(unsigned int column = 0; column < 3; ++column) {
             free_cell = board[row][column] == '-';
-            printf("%d",free_cell);
             if(free_cell) break;
         }
         if(free_cell) break;
@@ -137,7 +136,7 @@ bool has_free_cell(char board[3][3])
 
 int main(void)
 {
-    printf("TicTacToe [InCoMpLeTo :'(]\n");
+    printf("TicTacToe [Completo :)]\n");
 
     char board[3][3] = {
         { '-', '-', '-' },
