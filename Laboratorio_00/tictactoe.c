@@ -50,11 +50,35 @@ char get_winner_row(char board[3][3])
     return winner;
 }
 
+char get_winner_column(char board[3][3])
+{
+    char winner = '-';
+    bool is_winner = false;
+
+    for(unsigned int column = 0; column < 3; ++column) {
+        is_winner = board[0][column] == board[1][column]; 
+
+        for(unsigned int row = 1; row < 2; ++row) {
+            is_winner = is_winner && (board[row][column]== board[row + 1][column]);
+            if(!is_winner) break;   
+        }
+        
+        if(is_winner && (board[0][column] != winner)) {
+            winner = board[0][column];
+            break;
+        }
+    }
+
+    return winner;
+}
+
 char get_winner(char board[3][3])
 {
     char winner = '-';
 
     winner = get_winner_row(board);
+
+    if(winner == '-') winner = get_winner_column(board);
 
     return winner;
 }
