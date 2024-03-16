@@ -1,12 +1,12 @@
 <h1 align="center" style="font-weight:bold;">Algoritmos y Estructuras de Datos II</h1>
 <p align="center" style="color:gray; font-size: 20px; font-weight:bold;">TALLER - 14 de marzo 2024</p>
 
-## Laboratorio 0: Repaso de C
+# Laboratorio 0: Repaso de C
 <p style="color:gray; font-size: 14px;">
     -Revisión 2024: Marco Rocchietti
 </p>
 
-### Objetivos
+## Objetivos
 
 1. Repaso de programación básica en lenguaje C.
 2. Repaso de compilación de programas.
@@ -15,7 +15,7 @@
 5. Repaso de uso de las librerías **assert.h**, **stdio.h**, **stdbool.h**.
 6. Lectura y comprensión de código.
 
-### Ejercicio 1
+## Ejercicio 1
 En el archivo **[bounds.c](bounds.c)** implementar la función:
 ```c
 struct bound_data check_bound(int value, int arr[], unsigned int length);
@@ -42,7 +42,47 @@ La función debe implementarse <u>usando un único ciclo</u> (`for` o `while`).
 
 En la función **`main()`** se le debe solicitar al usuario que ingrese uno por uno los elementos del arreglo, para ello utilizar la función **`scanf()`** de la librería **`stdio.h`**. Una vez que se obtienen los elementos, se le debe pedir al usuario un valor para verificar con **`check_bound()`**. La salida por pantalla debe indicar si el valor que ingresó el usuario es *cota superior*, *cota inferior*, *mínimo* o *máximo*. Solo en caso de ser mínimo o máximo (esto significa que el valor se encuentra en el arreglo) mostrar por pantalla la posición donde se encontró el elemento.
 
-### Ejercicio 2
+### Ejecución
+Primero compile el programa con el siguiente comando:
+```bash
+gcc -Wall -Werror -Wextra -pedantic -std=c99 bounds.c -o bounds.out
+```
+Luego ejecute el programa con el siguiente comando:
+```bash
+./bounds.out
+```
+La salida por pantalla debe ser la siguiente: *`Bienvenido/a, a continuación se le solicitaran los datos necesarios para el programa.`*
+
+Luego el programa le solicitará que ingrese el tamaño su arreglo, mediante el mensaje de *`Ingrese el tamaño para su array: `*, usted deberá ingresar el tamaño deseado y pulsar la tecla *Enter*, en caso de colocar un numero mejor a 0 (cero) se le solicitará un nuevo valor.
+
+Después el programa le solicitará que ingrese los valores para su arreglo, mediante el mensaje de *`Ingrese su nro. 0: `*, usted deberá ingresar el valor deseado y pulsar la tecla *Enter*.
+
+Una vez que haya ingresado todos los valores para su arreglo, el programa mostrará en arreglo ingresado y le solicitará que ingrese un valor para verificar con **`check_bound()`**, mediante el mensaje de *`Ingrese el nro. a comparar: `*, usted deberá ingresar el valor deseado y pulsar la tecla *Enter*.
+
+Finalmente el programa mostrará por pantalla si el valor que ingresó el usuario es *cota superior*, *cota inferior*, *mínimo* o *máximo*. Solo en caso de ser mínimo o máximo (esto significa que el valor se encuentra en el arreglo) mostrará por pantalla la posición donde se encontró el elemento.
+
+#### Ejemplo
+```bash
+Bienvenido/a, a continuación se le solicitaran los datos necesarios para el programa.
+Ingrese el tamaño para su array: -2
+Por favor ingrese un valor mayor a 0.
+Ingrese el tamaño para su array: 0
+Por favor ingrese un valor mayor a 0.
+Ingrese el tamaño para su array: 4
+Ingrese su nro. 0: 0
+Ingrese su nro. 1: -1
+Ingrese su nro. 2: 9
+Ingrese su nro. 3: 4
+
+Tu array es: [0, -1, 9, 4]
+
+Ingrese el nro. a comparar: 9
+
+El valor 9 está en el array y es el máximo. Se encuentra en la posición 2.
+```
+
+
+## Ejercicio 2
 En el archivo **[tictactoe.c](tictactoe.c)** se encuentra una implementación del clásico juego <u><a href="https://es.wikipedia.org/wiki/Tres_en_l%C3%ADnea">tres en línea</a></u> (conocido como *tatetí* o *tictactoe*). El tablero 3x3 se representa como una matriz en C, declarada de la siguiente manera.
 ```c
 char board[3][3] = {
@@ -72,6 +112,6 @@ char get_winner(char board[3][3])
 que devuelve el jugador ganador (**'X'** o **'O'**) si lo hubo, o **'-'** si todavía no hay ganador. Para ello se debe recorrer la matriz para verificar si alguna columna, fila o diagonal tiene 3 veces consecutivas el mismo carácter.
 Se pide **leer el código y comprender** cómo se logra el funcionamiento del juego.
 
-### Ejecicio 3
+## Ejecicio 3
 1. En un archivo nuevo **tictactoe_gen.c** programar una implementación modificada del ejercicio anterior para hacer un tictactoe que utilice un tablero 4x4 donde el criterio para ganar es que haya 4 marcas iguales en línea en vez de 3.
 2. Modificar la implementación del apartado anterior (en el mismo archivo) para implementar un juego de tictactoe en un tablero 5x5. Si hicieron correctamente el apartado 1 debería salir cambiando un solo símbolo del código. Si requieren más cambios, rehacer el apartado 1.
