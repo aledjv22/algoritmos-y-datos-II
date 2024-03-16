@@ -101,7 +101,7 @@ char get_winner_left_diagonal(char board[3][3])
 
     // Iterar sobre la diagonal izquierda
     for(unsigned int i = 1; i < 2; ++i) {
-        is_winner = is_winner && (board[i][3 - i] == board[i][3 - i]);
+        is_winner = is_winner && (board[2 - i][i] == board[2 - (i + 1)][i + 1]);
         if(!is_winner) break;
     }
 
