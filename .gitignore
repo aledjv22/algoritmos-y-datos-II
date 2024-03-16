@@ -99,4 +99,9 @@ $RECYCLE.BIN/
 */*.out
 */*.o
 
+# Compression
+*.7z
+*.gz
+*.rar
+
 # End of https://www.toptal.com/developers/gitignore/api/linux,macos,windows,visualstudiocode
