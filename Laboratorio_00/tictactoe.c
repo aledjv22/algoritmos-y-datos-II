@@ -28,11 +28,13 @@ void print_board(char board[3][3])
     }
 }
 
+// Función encargada de obtener el ganador en fila
 char get_winner_row(char board[3][3])
 {
     char winner = '-';
     bool is_winner = false;
 
+    // Iterar sobre las filas
     for(unsigned int row = 0; row < 3; ++row) {
         is_winner = board[row][0] == board[row][1]; 
 
@@ -50,13 +52,13 @@ char get_winner_row(char board[3][3])
     return winner;
 }
 
-
-
+// Función encargada de obtener el ganador en columna
 char get_winner_column(char board[3][3])
 {
     char winner = '-';
     bool is_winner = false;
 
+    // Iterar sobre las columnas
     for(unsigned int column = 0; column < 3; ++column) {
         is_winner = board[0][column] == board[1][column]; 
 
@@ -74,11 +76,13 @@ char get_winner_column(char board[3][3])
     return winner;
 }
 
+// Función encargada de obtener el ganador en diagonal derecha
 char get_winner_right_diagonal(char board[3][3])
 {
     char winner = '-';
     bool is_winner = board[0][0] == board[1][1];
 
+    // Iterar sobre la diagonal derecha
     for(unsigned int i = 1; i < 2; ++i) {
         is_winner = is_winner && (board[i][i] == board[i + 1][i + 1]);
         if(!is_winner) break;
@@ -89,11 +93,13 @@ char get_winner_right_diagonal(char board[3][3])
     return winner;
 }
 
+// Función encargada de obtener el ganador en diagonal izquierda
 char get_winner_left_diagonal(char board[3][3])
 {
     char winner = '-';
     bool is_winner = board[2][0] == board[1][1];
 
+    // Iterar sobre la diagonal izquierda
     for(unsigned int i = 1; i < 2; ++i) {
         is_winner = is_winner && (board[i][3 - i] == board[i][3 - i]);
         if(!is_winner) break;
@@ -104,6 +110,7 @@ char get_winner_left_diagonal(char board[3][3])
     return winner;
 }
 
+// Función encargada de obtener el ganador
 char get_winner(char board[3][3])
 {
     char winner = '-';
@@ -119,10 +126,12 @@ char get_winner(char board[3][3])
     return winner;
 }
 
+// Función encargada de verificar si hay celdas libres
 bool has_free_cell(char board[3][3])
 {
     bool free_cell=false;
     
+    // Iterar sobre las celdas
     for(unsigned int row = 0; row < 3; ++row) {
         for(unsigned int column = 0; column < 3; ++column) {
             free_cell = board[row][column] == '-';
