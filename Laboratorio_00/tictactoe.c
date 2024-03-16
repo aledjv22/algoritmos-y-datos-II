@@ -28,21 +28,50 @@ void print_board(char board[3][3])
     }
 }
 
+char get_winner_row(char board[3][3])
+{
+    char winner = '-';
+    bool is_winner = false;
+
+    for(unsigned int row = 0; row < 3; ++row) {
+        is_winner = board[row][0] == board[row][1]; 
+
+        for(unsigned int column = 1; column < 2; ++column) {
+            is_winner = is_winner && (board[row][column] == board[row][column + 1]);
+            if(!is_winner) break;   
+        }
+        
+        if(is_winner && (board[row][0] != winner)) {
+            winner = board[row][0];
+            break;
+        }
+    }
+
+    return winner;
+}
+
 char get_winner(char board[3][3])
 {
     char winner = '-';
-    //
-    // TODO: COMPLETAR
-    //
+
+    winner = get_winner_row(board);
+
     return winner;
 }
 
 bool has_free_cell(char board[3][3])
 {
     bool free_cell=false;
-    //
-    // TODO: COMPLETAR
-    //
+    
+    for(unsigned int row = 0; row < 3; ++row) {
+        for(unsigned int column = 0; column < 3; ++column) {
+            free_cell = board[row][column] == '-';
+            printf("%d",free_cell);
+            if(free_cell) break;
+        }
+        if(free_cell) break;
+    }
+
     return free_cell;
 }
 
