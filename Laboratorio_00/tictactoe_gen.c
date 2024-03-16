@@ -4,6 +4,7 @@
 
 #include <assert.h>  /* assert() */
 
+// Definir el tamaño del tablero
 #define N 5
 #define CELL_MAX (N * N - 1)
 
@@ -29,11 +30,13 @@ void print_board(char board[N][N])
     }
 }
 
+// Función encargada de obtener el ganador en fila
 char get_winner_row(char board[N][N])
 {
     char winner = '-';
     bool is_winner = false;
 
+    // Iterar sobre las filas
     for(unsigned int row = 0; row < N; ++row) {
         is_winner = board[row][0] == board[row][1]; 
 
@@ -51,13 +54,13 @@ char get_winner_row(char board[N][N])
     return winner;
 }
 
-
-
+// Función encargada de obtener el ganador en columna
 char get_winner_column(char board[N][N])
 {
     char winner = '-';
     bool is_winner = false;
 
+    // Iterar sobre las columnas
     for(unsigned int column = 0; column < N; ++column) {
         is_winner = board[0][column] == board[1][column]; 
 
@@ -75,11 +78,13 @@ char get_winner_column(char board[N][N])
     return winner;
 }
 
+// Función encargada de obtener el ganador en diagonal derecha
 char get_winner_right_diagonal(char board[N][N])
 {
     char winner = '-';
     bool is_winner = board[0][0] == board[1][1];
 
+    // Iterar sobre la diagonal derecha
     for(unsigned int i = 1; i < N - 1; ++i) {
         is_winner = is_winner && (board[i][i] == board[i + 1][i + 1]);
         if(!is_winner) break;
@@ -90,11 +95,13 @@ char get_winner_right_diagonal(char board[N][N])
     return winner;
 }
 
+// Función encargada de obtener el ganador en diagonal izquierda
 char get_winner_left_diagonal(char board[N][N])
 {
     char winner = '-';
     bool is_winner = board[N - 1][0] == board[N - 2][1];
 
+    // Iterar sobre la diagonal izquierda
     for(unsigned int i = 1; i < N - 1; ++i) {
         is_winner = is_winner && (board[i][N - i] == board[i][N - i]);
         if(!is_winner) break;
@@ -105,6 +112,7 @@ char get_winner_left_diagonal(char board[N][N])
     return winner;
 }
 
+// Función encargada de obtener el ganador
 char get_winner(char board[N][N])
 {
     char winner = '-';
@@ -120,10 +128,12 @@ char get_winner(char board[N][N])
     return winner;
 }
 
+// Función encargada de verificar si hay celdas libres
 bool has_free_cell(char board[N][N])
 {
     bool free_cell=false;
     
+    // Iterar sobre las celdas
     for(unsigned int row = 0; row < N; ++row) {
         for(unsigned int column = 0; column < N; ++column) {
             free_cell = board[row][column] == '-';
