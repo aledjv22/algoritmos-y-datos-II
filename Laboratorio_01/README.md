@@ -42,11 +42,29 @@ se le está indicando al programa **render** que lea el archivo **example-easy.i
 Para ello se deben completar las definiciones de las funciones `array_from_file()`y la función `array_dump()`.
 Se suguiere no esperar hasta el final para compilar, se puede ir compilando a medida que se completan las funcionalidades del programa.
 
-> *💡Pueden ser de utilidad las funciones `fopen()`, `fscanf()`, `fclose()`... se pueden consultar las páginas del manual de referencia de linux, por ejemplo:* `$ man fopen`.
+> *💡Pueden ser de utilidad las funciones [`fopen()`](https://manpages.debian.org/buster/manpages-es/fopen.3.es.html), [`fscanf()`](https://manpages.debian.org/buster/manpages-es/fclose.3.es.html), [`fclose()`](https://manpages.debian.org/buster/manpages-es/fscanf.3.es.html)... se pueden consultar las páginas del manual de referencia de linux, por ejemplo:* [`$ man fopen`](https://manpages.debian.org/buster/manpages-es/fopen.3.es.html).
 
 ## Ejercicio 2 - Entrada Estándar
 Modificar **main.c**  (no borrar el original!) para que el programa en lugar de leer un archivo de la carpeta **input**, lea el tamaño y cada uno de los miembros del *array* por teclado y luego los muestre por la pantalla. Se puede (y se sugiere fuertemente) reutilizar la función `array_from_file()` la cual puede pasar a llamarse `array_from_stdin()` donde el parámetro `filepath`ya no será necesario. Además tampoco serán necesarios los parámetros de la función `main()` puesto que el programa se ejecuta sin especificar ningún archivo de entrada.
 
-> *💡Investigar sobre standard input:* `$ man stdin`.
+> *💡Investigar sobre standard input:* [`$ man stdin`](https://manpages.debian.org/buster/manpages-es/stdin.3.es.html).
 
 > *💡Cuando se ejecute el programa, luego de ingresar los elementos presionar CTRL + D para enviar la señal de [EOF(end of file)](https://es.wikipedia.org/wiki/EOF) a la entrada estándar.*
+
+
+## Ejercicio 3 - Módulos
+En este ejercicio se va a modularizar el programa del ejercicio 1. Primero se debe copiar el archivo **main.c** del ejercicio 1 al directorio **ej3** y luego completar los archivos:
++ **array_helpers.h:** Se deben escribir aquí los *prototipos* de las funciones
+	+ `array_from_file()`
+	+ `array_dump()`
++ **array_helpers.c:** Se deben colocar las definiciones de las funciones declaradas en **array_helpers.h** e incluir los prototipos al comienzo del archivo usando la directiva del preprocesador: **`#include "array_helpers.h"`**. Además deben incluirse con **`#include`** las librerías necesarias para que funcionen las funciones **`printf()`**, **`fscanf()`**, ... y todas las demás funciones que hayan utilizado en implementación de **array_from_file()** y **array_dump()**.
+En **main.c** también se debe incluir la librería **array_helpers.h** y borrar las funciones definidas en **array_helpers.c**. El programa se compila realizando los siguientes pasos:
+```bash
+gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c
+gcc -Wall -Werror -Wextra -pedantic -std=c99 -c main.c
+```
+y finalmente:
+```bash
+gcc -Wall -Werror -Wextra -pedantic -std=c99 array_helpers.o main.o -o reader
+```
+**-¿Por qué en la compilación con `gcc` no se le pasa `array_helpers.h` como parámetro?**
