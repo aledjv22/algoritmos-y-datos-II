@@ -68,3 +68,27 @@ y finalmente:
 gcc -Wall -Werror -Wextra -pedantic -std=c99 array_helpers.o main.o -o reader
 ```
 **-¿Por qué en la compilación con `gcc` no se le pasa `array_helpers.h` como parámetro?**
+
+## Ejercicio 4 - Orden de elementos
+Agregar a la función `array_is_sorted()`a la librería **array_helpers**. La función tiene prototipo:
+```c
+bool array_is_sorted(int a[], unsigned int length);
+```
+y dado un `array a[]` y su tamaño `length`debe devolver `true` <u>si y sólo si</u> los elementos del arreglo `a[]` están ordenados de manera ascendente, es decir si:
+```c
+a[0] <= a[1] <= a[2] <= ... <= a[length-1]
+```
+Como se utiliza el tipo `bool`, el cual no es nativo del lenguaje C, **<u>no olvidar incluir</u>** en **array_helpers.h** y **array_helpers.c** la librería **stdbool.h**. Modificar **main.c** para que además de mostrarel contenido del *array* del archivo especificado, también informe si está ordenado o no. Un ejemplo sería:
+```bash
+./reader ../input/example-easy.in
+[1, 2, 3, 4, 5]
+
+El arreglo está ordenado.
+```
+Otro ejemplo:
+```bash
+./reader ../input/example-unsorted.in
+[2, -1, 3, 8, 0]
+
+El arreglo no está ordenado
+```
