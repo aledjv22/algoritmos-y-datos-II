@@ -96,9 +96,9 @@ $RECYCLE.BIN/
 *.lnk
 
 # gcc outputs
-*/*.out
-*/*.o
-render
+*.out
+*.o
+reader
 
 # Compression
 *.7z
