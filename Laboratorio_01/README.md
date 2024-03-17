@@ -42,4 +42,11 @@ se le está indicando al programa **render** que lea el archivo **example-easy.i
 Para ello se deben completar las definiciones de las funciones `array_from_file()`y la función `array_dump()`.
 Se suguiere no esperar hasta el final para compilar, se puede ir compilando a medida que se completan las funcionalidades del programa.
 
-> 💡Pueden ser de utilidad las funciones `fopen()`, `fscanf()`, `fclose()`... se pueden consultar las páginas del manual de referencia de linux, por ejemplo: `$ man fopen`.
+> *💡Pueden ser de utilidad las funciones `fopen()`, `fscanf()`, `fclose()`... se pueden consultar las páginas del manual de referencia de linux, por ejemplo:* `$ man fopen`.
+
+## Ejercicio 2 - Entrada Estándar
+Modificar **main.c**  (no borrar el original!) para que el programa en lugar de leer un archivo de la carpeta **input**, lea el tamaño y cada uno de los miembros del *array* por teclado y luego los muestre por la pantalla. Se puede (y se sugiere fuertemente) reutilizar la función `array_from_file()` la cual puede pasar a llamarse `array_from_stdin()` donde el parámetro `filepath`ya no será necesario. Además tampoco serán necesarios los parámetros de la función `main()` puesto que el programa se ejecuta sin especificar ningún archivo de entrada.
+
+> *💡Investigar sobre standard input:* `$ man stdin`.
+
+> *💡Cuando se ejecute el programa, luego de ingresar los elementos presionar CTRL + D para enviar la señal de EOF(end of file) a la entrada estándar.*
