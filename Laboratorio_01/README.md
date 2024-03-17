@@ -49,4 +49,4 @@ Modificar **main.c**  (no borrar el original!) para que el programa en lugar de 
 
 > *💡Investigar sobre standard input:* `$ man stdin`.
 
-> *💡Cuando se ejecute el programa, luego de ingresar los elementos presionar CTRL + D para enviar la señal de EOF(end of file) a la entrada estándar.*
+> *💡Cuando se ejecute el programa, luego de ingresar los elementos presionar CTRL + D para enviar la señal de [EOF(end of file)](https://es.wikipedia.org/wiki/EOF) a la entrada estándar.*
