@@ -127,3 +127,28 @@ Para solucionar el problema **sólo se permite modificar el archivo mybool.h**.
 > *💡Investigar la directiva del preprocesador **ifndef**.
 
 Una vez resuelto el problema, hacer algo similar con **array_helpers.h** para evitar que pudiera generar el mismo problema.
+
+## Ejercicio 6 *
+Agregar a la librería **array_helpers** la función `array_swap()` con prototipo:
+```c
+void array_swap(int a[], unsigned int i, unsigned int j);
+```
+que dado un array `a[]` y dos índices `i`, `j` debe intercambiar los valores de dichas posiciones.
+
+Modificar **main.c** e invertir el array antes de mostrarlo por pantalla. Para ello pensar un algoritmo que utilice sucesivas llamadas a `array_swap()` para ir intercambiando los elementos del *array* hasta lograr invertirlo. El programa resultante debería comportarse de la siguiente manera:
+```bash
+./reader ../input/example-easy.in
+[5, 4, 3, 2, 1]
+El arreglo no está ordenado
+```
+Otro ejemplo:
+```bash
+/reader ../input/example-unsorted.in
+[0, 8, 3, -1, 2]
+El arreglo no está ordenado
+```
+último ejemplo:
+```bash
+[-63523, -62597, -62255, -59402, -58886, -52992, -52532, -51667, -45131, -44047]
+El arreglo está ordenado
+```
