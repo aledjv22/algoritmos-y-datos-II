@@ -116,10 +116,13 @@ Una vez realizados los reemplazos, compilar el programa de la siguiente manera:
 gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c
 gcc -Wall -Werror -Wextra -pedantic -std=c99 -c main.c
 ```
-**-¿Por qué falta la compilación?**
+**-¿Por qué falla la compilación?**
 Tener en cuenta que cuando se compila **test_mybool.c** todo funciona correctamente.
 **-¿Cómo se resuelve el problema?**
 Para solucionar el problema **sólo se permite modificar el archivo mybool.h**.
+
+> RESPUESTA: La compilación falla debido a la inclusión múltiple del archivo de cabecera "mybool.h". Cuando un archivo de cabecera es incluido más de una vez, puede llevar a definiciones duplicadas, lo que causa errores de compilación.
+> Para resolver este problema, puedes usar las directivas del preprocesador #ifndef, #define y #endif para evitar la inclusión múltiple. Estas directivas aseguran que el contenido del archivo de cabecera se incluya solo una vez
 
 > *💡Investigar la directiva del preprocesador **ifndef**.
 
