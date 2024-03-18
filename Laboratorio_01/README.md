@@ -68,6 +68,9 @@ y finalmente:
 gcc -Wall -Werror -Wextra -pedantic -std=c99 array_helpers.o main.o -o reader
 ```
 **-¿Por qué en la compilación con `gcc` no se le pasa `array_helpers.h` como parámetro?**
+> La razón por la que no se pasa array_helpers.h como parámetro al compilador gcc es porque los archivos de cabecera (.h) no se compilan directamente. En su lugar, se incluyen en los archivos de código fuente (.c) mediante la directiva #include. 
+> Es decir, cuando se compila un archivo de código fuente, el preprocesador de gcc busca todas las directivas #include y reemplaza cada una de ellas con el contenido del archivo de cabecera correspondiente. Por lo tanto, el código de array_helpers.h se compila como parte de array_helpers.c y main.c, no de forma independiente. 
+> En resumen, los archivos de cabecera definen interfaces (prototipos de funciones, definiciones de tipos, etc.) que se utilizan en uno o más archivos de código fuente, pero no contienen código ejecutable por sí mismos, por lo que no necesitan ser compilados directamente.
 
 ## Ejercicio 4 - Orden de elementos
 Agregar a la función `array_is_sorted()`a la librería **array_helpers**. La función tiene prototipo:
