@@ -71,6 +71,7 @@ void array_dump(int a[], unsigned int length) {
     printf("]\n");
 }
 
+// Check if the array is sorted
 bool array_is_sorted(int a[], unsigned int length) {
     bool is_sorted = true;
     unsigned int index = 0;

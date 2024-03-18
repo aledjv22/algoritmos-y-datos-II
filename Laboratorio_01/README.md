@@ -92,3 +92,32 @@ Otro ejemplo:
 
 El arreglo no está ordenado
 ```
+
+## Ejercicio 5 - Problemática de librerías: mybool
+Aquí se utilizará el mismo programa construido en el ejercicio anterior, pero en vez de usar el tipo `bool` de **stdbool.h** se va a usar una definición casera de los *booleanos*. Como se vio en Algoritmos I, en C los enteros y los booleanos son muy parecidos. Se puede definir entonces en el archivo **mybool.h**:
+```c
+typedef int mybool;
+```
+Recordar que `typedef` define sinónimos de tipos (como `type` en Haskell), por lo cual estamos diciendo que `mybool` es un sinónimo en `int` (son el mismo tipo). Además se definen las constantes `true` y `false`:
+```c
+#define true 1
+#define false 0
+
+typedef int mybool;
+```
+En el archivo **test_mybool.c** se muestran ejemplos del uso del tipo `mybool`, donde se puede apreciar que se trabaja prácticamente igual que con el tipo `bool`. Para comparar además se puede ver el archivo **[test_bool.c](./ej5/test_bool.c)** que utiliza **stdbool.h**.
+El objetivo entonces es reemplazar el uso de la libreria stdbool por mybool, para ello se debe modificar **main.c**, **array_helpers.h** y **array_helpers.c** reemplazando al tipo `bool` por el tipo `mybool` y además reemplazando `#include <stdbool.h>` por `#include "mybool.h"`.
+
+Una vez realizados los reemplazos, compilar el programa de la siguiente manera:
+```bash
+gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c
+gcc -Wall -Werror -Wextra -pedantic -std=c99 -c main.c
+```
+**-¿Por qué falta la compilación?**
+Tener en cuenta que cuando se compila **test_mybool.c** todo funciona correctamente.
+**-¿Cómo se resuelve el problema?**
+Para solucionar el problema **sólo se permite modificar el archivo mybool.h**.
+
+> *💡Investigar la directiva del preprocesador **ifndef**.
+
+Una vez resuelto el problema, hacer algo similar con **array_helpers.h** para evitar que pudiera generar el mismo problema.
