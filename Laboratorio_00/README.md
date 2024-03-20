@@ -45,11 +45,11 @@ En la función **`main()`** se le debe solicitar al usuario que ingrese uno por 
 ### Ejecución
 Primero compile el programa con el siguiente comando:
 ```bash
-gcc -Wall -Werror -Wextra -pedantic -std=c99 bounds.c -o bounds.out
+make bounds
 ```
 Luego ejecute el programa con el siguiente comando:
 ```bash
-./bounds.out
+make run_bounds
 ```
 La salida por pantalla debe ser la siguiente: *`Bienvenido/a, a continuación se le solicitaran los datos necesarios para el programa.`*
 
@@ -115,11 +115,11 @@ Se pide **leer el código y comprender** cómo se logra el funcionamiento del ju
 ### Ejecución
 Primero compile el programa con el siguiente comando:
 ```bash
-gcc -Wall -Werror -Wextra -pedantic -std=c99 tictactoe.c -o tictactoe.out
+make tictactoe
 ```
 Luego ejecute el programa con el siguiente comando:
 ```bash
-./tictactoe.out
+make run_tictactoe
 ```
 
 La salida por pantalla debe ser la siguiente: 
@@ -215,11 +215,11 @@ Ganó O
 ### Ejecución
 Primero compile el programa con el siguiente comando:
 ```bash
-gcc -Wall -Werror -Wextra -pedantic -std=c99 tictactoe_gen.c -o tictactoe_gen.out
+make tictactoe_gen
 ```
 Luego ejecute el programa con el siguiente comando:
 ```bash
-./tictactoe_gen.out
+make run_tictactoe_gen
 ```
 
 La salida por pantalla debe ser la siguiente (en caso de ser tamaño 5x5): 
@@ -378,3 +378,27 @@ Turno X - Elija posición (número del 0 al 24): 20
 	 ................................................................................
 Ganó X
 ```
+
+## Comandos de ejecución
+Los comandos de ejecución son los siguientes:
+- Si desea compilar todos los programas, ejecute el siguiente comando:
+  ```bash
+  make all
+  ```
+  o 
+  ```bash
+  make
+  ```
+- Si desea compilar un programa en particular, ejecute el siguiente comando:
+  ```bash
+  make <nombre_del_programa>
+  ```
+- Si desea ejecutar un programa en particular, ejecute el siguiente comando:
+  ```bash
+  make run_<nombre_del_programa>
+  ```
+
+Los programas que se pueden ejecutar son:
+- **bounds**
+- **tictactoe**
+- **tictactoe_gen**
