@@ -97,7 +97,6 @@ $RECYCLE.BIN/
 
 # gcc outputs
 *.out
-*.o
 reader
 
 # Compression

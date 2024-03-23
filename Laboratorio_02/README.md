@@ -84,3 +84,41 @@ bool fstring_eq(fixstring s1, fixstring s2);
 bool fstring_less_eq(fixstring s1, fixstring s2);
 ```
 La función **fstring_length()** devuelve la longitud de la cadena guardada en el parámetro **s**, la función **fstring_eq()** indica si las cadenas s1 y s2 son iguales (contienen la misma cadena), mientras que **fstring_less_eq()** indica si la cadena guardada en s1 es menor o igual que la guardada en s2 en el sentido del orden alfabético. **No se permite usar librerías de C como string.h ni strings.h**. Una vez implementadas pueden probarlas compilando junto con **main.c**.
+
+## Ejercicio 1: Insertion Sort
+Dentro de la carpeta **[ej1](./ej1/)** se encuentran los siguientes archivos:
+
+| **Archivo** | **Descripción** |
+| :------------ | :------------ |
+| **[array_helpers.h](./ej1/array_helpers.h)** | Prototipos y descripciones de las funciones auxiliares para manipular arreglos. |
+| **[array_helpers.c](./ej1/array_helpers.c)** | Implementaciones de las funciones de la librería array_helpers |
+| **[sort_helpers.h](./ej1/sort_helpers.h)** | Prototipos y descripciones de las funciones `goes_before()`, `swap()` y `array_is_sorted()` |
+| **[sort_helpers.o](./ej1/sort_helpers.o)** | Archivo binario con las implementaciones las funciones declaradas en [sort_helpers.h](./ej1/sort_helpers.h) (código compilado para la arquitectura **x86-64**) |
+| **[sort.h](./ej1/sort.h)** | Prototipo de la función `insertion_sort()` y su descripción |
+| **[sort.c](./ej1/sort.c)** | Contiene una implementación incompleta de `insertion_sort()`, falta implementar `insert()` |
+| **[main.c](./ej1/main.c)** | Programa principal que carga un *array* de números, luego lo ordena con la función `insertion_sort()` y finalmente comprueba que el arreglo sea permutación ordenada del que se cargó incialmente. |
+
+> *💡 Si se trabaja en una computadora con arquitectura distinta a x86-64, entonces seleccionar y renombrar uno de los siguientes archivos, `sort_helpers.o_32` o `sort_helpers.o_macos` según la arquitectura de su máquina.*
+
+### **Parte A:** Ordenación por Inserción
+Se debe realizar una implementación del algoritmo de ordenación por inserción (alias *insertion-sort*). Para ello es necesario completar la implementación del “procedimiento” `insert()` en el módulo **[sort.c](./ej1/sort.c)**. Como guía se puede examinar el resto del archivo **[sort.c](./ej1/sort.c)** y la definición del [algoritmo de ordenación por inserción vista en el teórico](https://wiki.cs.famaf.unc.edu.ar/lib/exe/fetch.php?media=algo2:main:01.ordenacion.elemental.pdf#page=59). El algoritmo debe ordenar con respecto a la relación `goes_before()` declarada en **[sort_helpers.h](./ej1/sort_helpers.h)** cuya implementación está oculta puesto que viene ya compilada en **[sort_helpers.o](./ej1/sort_helpers.o)**.
+
+### **Parte B:** Chequeo de Invariante
+Se debe modificar el “procedimiento” `insertion_sort()` agregando la verificación de cumplimiento de la invariante del ciclo `for` que se vio en el teórico. Por simplicidad sólo se debe verificar la siguiente parte de la Invariante:
+- el segmento inicial **`a[0,i)`** del arreglo está ordenado.
+Para ello usar las funciones `assert()` y `array_is_sorted()`.
+
+### Compilación
+Una vez implementados los incisos *a)* y *b)*, se puede compilar ejecutando:
+```bash
+gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c sort.c main.c
+
+gcc -Wall -Werror -Wextra -pedantic -std=c99 -no-pie array_helpers.o sort.o sort_helpers.o main.o -o sorter
+```
+la opción **-no-pie** tiene que ver con que se están “linkeando” los objetos `array_helpers.o`, `sort.o` y `main.o` compilados en nuestra computadora con el objeto precompilado `sort_helpers.o`, cuya compilación fue realizada en una computadora distinta. En consecuencia esta opción puede ser necesaria para lograr compatibilidad entre los archivos binarios durante el “linkeo” y así poder generar el ejecutable. El programa puede ejecutarse de la siguiente manera:
+```bash
+./sorter ../input/example-unsorted.in
+```
+Si el programa funciona bien en ese ejemplo (es decir, si no reporta error), probar con otros archivos de la carpeta **[../input](./input/)**, sin olvidar realizar una prueba con el archivo **[../input/empty.in](./input/empty.in)**.
+
+Analizar los resultados del programa y responder: **¿Qué relación implementa la función `goes_before()`?¿Cuál es el criterio que usa?**
