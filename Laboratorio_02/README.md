@@ -122,3 +122,29 @@ la opción **-no-pie** tiene que ver con que se están “linkeando” los objet
 Si el programa funciona bien en ese ejemplo (es decir, si no reporta error), probar con otros archivos de la carpeta **[../input](./input/)**, sin olvidar realizar una prueba con el archivo **[../input/empty.in](./input/empty.in)**.
 
 Analizar los resultados del programa y responder: **¿Qué relación implementa la función `goes_before()`?¿Cuál es el criterio que usa?**
+
+## Ejercicio 2: Quick Sort I
+En este ejercicio se realizará una implementación top-down del algoritmo de ordenación rápida vista en el teórico. En la carpeta **[ej2](./ej2/)** se encuentran los siguientes archivos:
+
+| **Archivo** | **Descripción** |
+| :------------ | :------------ |
+| **[array_helpers.h](./ej2/array_helpers.h)** | Es el mismo que en el ejercicio anterior. |
+| **[array_helpers.c](./ej2/array_helpers.c)** | Es el mismo que en el ejercicio anterior. |
+| **[sort_helpers.h](./ej2/sort_helpers.h)** | Contiene además la declaración y descripción de `partition()` |
+| **[sort_helpers.o](./ej2/sort_helpers.o)** | Contiene implementaciones ilegibles de esas funciones (código compilado para arquitectura **x86-64**) |
+| **[sort.h](./ej2/sort.h)** | Contiene descripción de la función `quick_sort()`. |
+| **[sort.c](./ej2/sort.c)** | Contiene una implementación muy incompleta de `quick_sort()`, además falta implementar `quick_sort_rec()`. |
+| **[main.c](./ej2/main.c)** | Contiene el programa principal que carga un arreglo de números, luego lo ordena con la función `quick_sort()` y finalmente comprueba que el arreglo sea una permutación ordenada del que se cargó inicialmente. |
+
+> *💡 Si se trabaja en una computadora con arquitectura distinta a x86-64, entonces seleccionar y renombrar uno de los siguientes archivos, `sort_helpers.o_32` o `sort_helpers.o_macos` según la arquitectura de su máquina.*
+
+### **Parte A:** Implementación de `quick_sort_rec()`
+Implementar el “procedimiento” `quick_sort_rec()` en el archivo **[sort.c](./ej2/sort.c)**. Tener en cuenta que **no es necesario** implementar la función `partition()` puesto que la misma ya está implementada (aunque no puede leerse su código por estar compilada en **[sort_helpers.o](./ej2/sort_helpers.o)**). Para saber cómo utilizarla, examinar su descripción en **[sort_helpers.h](./ej2/sort_helpers.h)**.
+
+A modo de guía se puede revisar la presentación del algoritmo de ordenación rápida realizada en la [clase del teórico](https://wiki.cs.famaf.unc.edu.ar/lib/exe/fetch.php?media=algo2:main:explicacion_quicksort.pdf).
+
+### **Parte B:** Función `main()`
+Se debe abrir el archivo **[main.c](./ej2/main.c)** y completar la función `main()` con una llamada al “procedimiento” `quick_sort()`. Para entender cómo utilizar este “procedimiento”, examinar el archivo **[sort.h](./ej2/sort.h)**.
+
+### Compilación
+Una vez completadas las partes A y B, compilar el código con **gcc** siguiendo el mismo método del **ejercicio 1**.
