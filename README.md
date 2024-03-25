@@ -6,3 +6,4 @@ Este repositorio esta destinado al alojamiento de los laboratorios realizados en
 
 ### - [Laboratorio 00](./Laboratorio_00)
 ### - [Laboratorio 01](./Laboratorio_01)
+### - [Laboratorio 02](./Laboratorio_02)
