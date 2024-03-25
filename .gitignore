@@ -98,6 +98,8 @@ $RECYCLE.BIN/
 # gcc outputs
 *.out
 reader
+sorter
+Laboratorio_02/ej0/*.o
 
 # Compression
 *.7z
