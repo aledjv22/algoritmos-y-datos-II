@@ -27,11 +27,14 @@ int main(void) {
                 printf("Los strings '%s' y '%s' son iguales\n",
                         words[i], words[j]);
             }
-            printf("El string '%s' va %s alfabeticamente que '%s'\n\n", 
+            printf("El string '%s' va %s alfabeticamente que '%s'\n", 
                    words[i],
-                   fstring_less_eq(words[i], words[j]) ? "antes": "despues",
+                   fstring_less_eq(words[i], words[j]) ? 
+                    fstring_eq(words[i], words[j]) ? 
+                    "igual": "antes" :"despues",
                    words[j]);
         }
+        printf("\n\n");
     }
     return EXIT_SUCCESS;
 }

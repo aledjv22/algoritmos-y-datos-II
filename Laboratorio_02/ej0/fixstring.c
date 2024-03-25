@@ -4,23 +4,31 @@
 #include "fixstring.h"
 
 unsigned int fstring_length(fixstring s) {
-    /*
-     * COMPLETAR
-     *
-     */
+    unsigned int length = 0;
+
+    while (s[length] != '\0') length++;
+
+    return length;
 }
 
 bool fstring_eq(fixstring s1, fixstring s2) {
-    /*
-     * COMPLETAR
-     *
-     */
+    bool eq = true;
+    unsigned int i = 0;
+
+    while (s1[i] != '\0' && s2[i] != '\0' && eq) {
+        eq = s1[i] == s2[i];
+        i++;
+    }
+
+    eq = eq && s1[i] == '\0' && s2[i] == '\0';
+
+    return eq;
 }
 
 bool fstring_less_eq(fixstring s1, fixstring s2) {
-    /*
-     * COMPLETAR
-     *
-     */
-}
+    unsigned int i = 0;
 
+    while (s1[i] != '\0' && s2[i] != '\0' && s1[i] == s2[i]) i++;
+
+    return s1[i] <= s2[i];
+}
