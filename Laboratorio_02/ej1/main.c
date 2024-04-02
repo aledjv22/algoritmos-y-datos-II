@@ -69,5 +69,10 @@ int main(int argc, char *argv[]) {
 
   /* check if it is a permutation of original */
   assert(array_is_permutation_of(copy, array, length));
+
+  printf("\nLa relación implementada por goes_before() es la de menor que. El\n");
+  printf("criterio que usa es el comparar dos elementos y devolver verdadero si el\n");
+  printf("primer elemento es menor que el segundo en base al modulo de cada uno.\n");
+
   return EXIT_SUCCESS;
 }
