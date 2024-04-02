@@ -123,6 +123,8 @@ Si el programa funciona bien en ese ejemplo (es decir, si no reporta error), pro
 
 Analizar los resultados del programa y responder: **¿Qué relación implementa la función `goes_before()`?¿Cuál es el criterio que usa?**
 
+> La relación implementada por `goes_before()` es la de menor que. El criterio que usa es el de comparar dos elementos y devolver verdadero si el primer elemento es menor que el segundo en base al modulo de cada uno.
+
 ## Ejercicio 2: Quick Sort I
 En este ejercicio se realizará una implementación top-down del algoritmo de ordenación rápida vista en el teórico. En la carpeta **[ej2](./ej2/)** se encuentran los siguientes archivos:
 
@@ -148,3 +150,20 @@ Se debe abrir el archivo **[main.c](./ej2/main.c)** y completar la función `mai
 
 ### Compilación
 Una vez completadas las partes A y B, compilar el código con **gcc** siguiendo el mismo método del **ejercicio 1**.
+
+## Ejercicio 3: Quick Sort II
+En la carpeta [ej3](./ej3/) se encuentran los siguientes archivos:
+
+| **Archivo** | **Descripción** |
+| :------------ | :------------ |
+| **[sort_helpers.h](./ej3/sort_helpers.h)** | Contiene descripciones de las funciones `goes_before()`, `swap()` y `array_is_sorted()` |
+| **[sort_helpers.o](./ej3/sort_helpers.o)** | Contiene implementaciones ilegibles de todo lo descripto en *sort_helpers.h* (código compilado para la arquitectura **x86-64**). Notar que la función `partition()` no está más aquí. |
+| **[sort.h](./ej3/sort.h)** | Contiene descripción de la función `quick_sort()`. |
+| **[sort.c](./ej3/sort.c)** | Contiene una implementación incompleta de `quick_sort()`, falta implementar `quick_sort_rec()` y `partition()`. |
+
+> *💡 Si se trabaja en una computadora con arquitectura distinta a **x86-64**, entonces seleccionar y renombrar uno de los siguientes archivos, `sort_helpers.o_32` o `sort_helpers.o_macos` según la arquitectura de su máquina.*
+
+Copiar los archivos **array_helpers.h**, **array_helpers.c** y **main.c** del ejercicio 2. Luego copiar el "procedimiento" `quick_sort_rec()` (también del *ejercicio 2*) en el archivo **sort.c** y **definir** allí la función `partition()` usando como guía la presentación que se dio del algoritmo de ordenación rápida en la [clase del teórico](https://wiki.cs.famaf.unc.edu.ar/lib/exe/fetch.php?media=algo2:main:explicacion_quicksort.pdf).
+
+### Compilación
+Una vez completada la definición de `partition()`, compilar el código con **gcc** siguiendo el mismo método del **ejercicio 1**.
