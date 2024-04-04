@@ -103,6 +103,9 @@ Laboratorio_02/ej0/*.o
 array_helpers.o
 main.o
 sort.o
+fixstring.o
+Laboratorio_02/ej5/sort_helpers.o
+word_sorter
 
 # Compression
 *.7z
