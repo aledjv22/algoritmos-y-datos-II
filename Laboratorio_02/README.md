@@ -188,3 +188,27 @@ Copiar los archivos **array_helpers.h** y **array_helpers.c** de ejercicio anter
 ### Compilación y Ejecución
 Una vez completados los ítems 1 y 2, compilar el código con **gcc** siguiendo el mismo método del ejercicio 1.
 Analizar los resultados de la ejecución del programa para distintos ejemplos y sacar conclusiones sobre el desempeño de cada algoritmo de ordenación.
+
+## Ejercicio 5: Ordenación alfabética
+En la carpeta **[ej5](./ej5/)** van a encontrar los archivos **[fixstring.h](./ej5/fixstring.h)**, **[fixstring.c](./ej5/fixstring.c)**. Deben copiar las implementaciones del **`fstring_length()`**, **`fstring_eq()`** y **`fstring_less_eq()`** realizadas en el ejercicio 0 a **[fixstring.c](./ej5/fixstring.c)** y luego completar la implementación de la función
+```c
+void fstring_swap(fixstring s1, fixstring s2);
+```
+que debe intercambiar los contenidos de las cadenas **s1** y **s2**. Para implementar esta función pueden realizar de manera auxiliar a **fstring_set()** (que ya viene implementada).
+
+Se incluye un código muy parecido al de los ejercicios anteriores pero que es capaz de leer un arreglo de palabras, es decir un arreglo de elementos tipo **fixstring**. Los archivos de entrada están en la carpeta **[ej5/input](./ej5/input/)**. La idea será ordenar las palabras usando el algoritmo de `quick sort`. Deben entonces adaptar el código para que:
+1. Se ordene el arreglo de *strings* de entrada de manera alfabética.
+2. Se ordene el arreglo de *strings* de entrada según el largo de las cadenas (las cadenas más cortas al principio).
+   
+La forma de compilar el código es:
+```bash
+gcc -Wall -Werror -Wextra -pedantic -std=c99 -c array_helpers.c fixstring.c main.c sort.c sort_helpers.c
+gcc -Wall -Wextra -std=c99 array_helpers.o fixstring.o main.o sort.o sort_helpers.o -o word_sorter
+```
+
+Y luego un ejemplo de ejecución:
+```bash
+$ ./word_sorter input/example-easywords.in
+4
+casa chau hola perro
+```
