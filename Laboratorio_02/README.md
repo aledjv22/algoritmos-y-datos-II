@@ -167,3 +167,24 @@ Copiar los archivos **array_helpers.h**, **array_helpers.c** y **main.c** del ej
 
 ### Compilación
 Una vez completada la definición de `partition()`, compilar el código con **gcc** siguiendo el mismo método del **ejercicio 1**.
+
+## Ejercicio 4: Versus
+Realizar una comparación de todos los algoritmos de ordenación implementados en este laboratorio. En la carpeta **[ej4](./ej4/)** se encuentran los siguientes archivos:
+
+| **Archivo** | **Descripción** |
+| :------------ | :------------ |
+| **[sort_helpers.h](./ej4/sort_helpers.h)** | Se agregan nuevas declaraciones de funciones para manejo de contadores. |
+| **[sort_helpers.o](./ej4/sort_helpers.o)** | Contiene implementaciones ilegibles de todo lo descripto en `sort_helpers.h` (código compilado para arquitectura **x86-64**) |
+| **[sort.h](./ej4/sort.h)** | Contiene las declaraciones y descripciones de las implementaciones de los métodos de ordenación `selection-sort`, `insertion-sort` y `quick_sort()`. |
+| **[sort.c](./ej4/sort.c)** | Contiene las definiciones incompletas de las funciones declaradas en sort.h. Deben completarse con el código de los ejercicios anteriores. |
+| **[main.c](./ej4/main.c)** | Contiene el programa principal que carga un arreglo de números, luego lo ordena usando alguno de los algoritmos de ordenación implementados y muestra: <ul><li>Tiempo de ejecución.</li><li>Números de comparaciones.</li><li>Intercambios realizados.</li></ul> |
+
+> *💡 Si se trabaja en una computadora con arquitectura distinta a x86-64, entonces seleccionar y renombrar uno de los siguientes archivos, `sort_helpers.o_32` o `sort_helpers.o_macos` según la arquitectura de su máquina.*
+
+Copiar los archivos **array_helpers.h** y **array_helpers.c** de ejercicio anterior y luego:
+1. Abrir el archivo **[sort.c](./ej4/sort.c)** y copiar el código de cada uno de los algoritmos de ordenación resueltos en los ejercicios anteriores.
+2. Abrir el archivo **[main.c](./ej4/main.c)** y completar la función `main()` siguiendo los pasos indicados en los comentarios.
+
+### Compilación y Ejecución
+Una vez completados los ítems 1 y 2, compilar el código con **gcc** siguiendo el mismo método del ejercicio 1.
+Analizar los resultados de la ejecución del programa para distintos ejemplos y sacar conclusiones sobre el desempeño de cada algoritmo de ordenación.
