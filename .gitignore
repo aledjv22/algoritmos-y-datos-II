@@ -106,6 +106,7 @@ sort.o
 fixstring.o
 Laboratorio_02/ej5/sort_helpers.o
 word_sorter
+readprhase
 
 # Compression
 *.7z

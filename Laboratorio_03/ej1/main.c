@@ -3,14 +3,6 @@
 
 #define MAX_SIZE 1000
 
-/* Read status */
-// fscanf returns 1 when it reads a number
-#define READ_SUCCESS 1 
-// fscanf returns 0 when it can't read a number
-#define READ_FAILURE 0
-// fscanf returns EOF when it reaches the end of the file
-#define READ_EOF EOF 
-
 
 static void dump(char a[], unsigned int length) {
     printf("\"");
@@ -43,12 +35,40 @@ static unsigned int data_from_file(const char *path,
     return i;
 }
 
+static unsigned int maximum(unsigned int indexes[], 
+                            unsigned int length) {
+    unsigned int max_index = indexes[0];
+
+    for(unsigned int i = 1; i < length ; ++i) {
+        printf("Max index: %u\n", max_index);
+        if(max_index < indexes[i]) max_index = indexes[i];
+    }
+
+    return max_index;
+}
+
+static void reconstruction(char letters[], 
+                           unsigned int indexes[], 
+                           char sorted[], 
+                           unsigned int length) {
+    unsigned int max_index = maximum(indexes, length);
+
+    if(max_index >= MAX_SIZE) {
+        printf("Error, the maximum index is greater than the allowed size.\n");
+        exit(EXIT_FAILURE);   
+    }
+
+    for(unsigned int i = 0; i < length; ++i) {
+        sorted[indexes[i]] = letters[i];
+    }
+}
+
 int main(int argc, char *argv[]) {
     char *file;
     unsigned int indexes[MAX_SIZE];
     char letters[MAX_SIZE];
-    // char sorted[MAX_SIZE];
-    unsigned int length=0; 
+    char sorted[MAX_SIZE];
+    unsigned int length = 0; 
 
     if(argc != 2) {
         printf("Error, invalid number of arguments.\n");
@@ -64,7 +84,9 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    dump(letters, length);
+    reconstruction(letters, indexes, sorted, length);
+
+    dump(sorted, length);
 
     return EXIT_SUCCESS;
 }
