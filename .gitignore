@@ -110,6 +110,9 @@ readprhase
 weather
 weather.o
 weather_utils.o
+helpers.o
+mysort
+
 
 # Compression
 *.7z
