@@ -107,6 +107,9 @@ fixstring.o
 Laboratorio_02/ej5/sort_helpers.o
 word_sorter
 readprhase
+weather
+weather.o
+weather_utils.o
 
 # Compression
 *.7z
