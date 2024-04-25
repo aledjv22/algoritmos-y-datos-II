@@ -70,3 +70,24 @@ int *p=NULL;
 
 el programa siempre va a fallar, y eso es bueno.
 Claramente los ejemplos de arriba son errores que saltan a la vista pero sirven para ilustrar situaciones en la que no es tan obvio que se usa un puntero sin inicializar, pero el efecto es el mismo.
+
+## Ejercicio 1:  Introducción de punteros
+la tarea de este ejercicio consiste en completar el archivo **[main.c](./ej1/main.c)** de manera tal que la salida del programa por pantalla sea la siguiente:
+```bash
+x = 9
+m = (100, F)
+a[1] = 42
+```
+
+Las restricciónes son:
+- No usar las variables **`x`**, **`m`** y **`a`** en la parte izquierda de alguna asignación.
+- Se pueden agregar líneas de código, pero <u>no modificar las que ya existen</u>.
+- Se pueden declarar <u>hasta 2 punteros</u>.
+
+Recordar siempre inicializar los punteros en **NULL**.
+
+> *💡Se mostró en el taller cómo hacer debugging de un programa mediante GDB. Esta herramienta también es útil para entender “qué está pasando” con el código cuando se ejecuta. Se recomienda compilar con los símbolos de debugging y poner breakpoints para imprimir los valores de las variables del programa.*
+
+> *💡En gdb también se pueden imprimir valores como:*
+> - *Dirección de memoria de una variable: **`print &x`**.*
+> - *El valor que hay en la memoria apuntada por un puntero: **`print *p`**.*
