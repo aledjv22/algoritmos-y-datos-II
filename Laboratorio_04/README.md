@@ -17,11 +17,24 @@
 
 ## Preliminares: Punteros 101
 El objetivo del primer ejercicio es adquirir un entrenamiento básico y comprender el funcionamiento de punteros en C.
-Un puntero es un tipo de variable especial que guarda una dirección de memoria. En C se denotan los punteros usando el símbolo **`*`**. Es decir que una variable **p** declarada como **`int *p;`** es del tipo *<ul>puntero a int</ul>*.
+Un puntero es un tipo de variable especial que guarda una dirección de memoria. En C se denotan los punteros usando el símbolo **`*`**. Es decir que una variable **p** declarada como **`int *p;`** es del tipo *<u>puntero a int</u>*.
 Para el manejo de punteros contamos con dos operadores unarios básicos, el operador de referenciación y el de desreferenciación. 
 
 ### Operación de referenciación (&)
-Este operador obtiene la <ul>dirección de memoria</ul> de una variable. También se lo conoce como operador de dirección (*address operator*). Si se tiene una variable entera **`x`** declarada como **`int x=3;`** entonces la expresión **`&x`** retornará la dirección de memoria donde está alojado el contenido de la variable **`x`**.
+Este operador obtiene la <u>dirección de memoria</u> de una variable. También se lo conoce como operador de dirección (*address operator*). Si se tiene una variable entera **`x`** declarada como **`int x=3;`** entonces la expresión **`&x`** retornará la dirección de memoria donde está alojado el contenido de la variable **`x`**.
+
+<div align="center">
+  <img src="https://i.ibb.co/j8CCxXx/Captura-desde-2024-04-27-20-40-49.png" />
+</div>
+
+Particularmente la expresión **`&x`** en este caso es del tipo **`int*`**, es decir del tipo puntero a **`int`**. Por lo tanto, se puede hacer lo siguiente:
+```c
+int x=3;
+int *p;
+p = &x;
+```
+
+notar que la asignación es correcta porque **`p`** y **`&x`** tienen el mismo tipo. En este ejemplo entonces el puntero **`p`** guarda la dirección de memoria de **`x`** y podemos decir que **`p`** apunta a **`x`**.
 
 <div align="center">
   <img src="https://i.ibb.co/FHft3Kt/Captura-desde-2024-04-24-23-51-43.png" />
@@ -29,6 +42,7 @@ Este operador obtiene la <ul>dirección de memoria</ul> de una variable. Tambié
 
 ### Operación de desreferenciación (*)
 Obtiene el **valor** de lo apuntado por el puntero. También se lo conoce como el operador de indirección (indirection operator). Se lo puede pensar como una operación de inspección ya que accede al valor alojado en una dirección de memoria. Si se tiene una variable de tipo **`int*`** llamada **`p`**, entonces la expresión **`*p`** retornará el valor entero que se aloja en la dirección de memoria que contiene **`p`**. En el ejemplo de más arriba **`*p`** devuelve **3**.
+
 Además si se utiliza **`*p`** del lado izquierdo de una asignación:
 ```c
 *p = <expresión>;
@@ -49,7 +63,9 @@ entonces sucede que
 </div>
 
 Notar que se cambió el valor de la variable **`x`** de manera indirecta usando el puntero **`p`**.
+
 Cabe aclarar que cuando se declara la variable de tipo puntero **`int *p;`** el símbolo **`*`** no actúa como operador sino que simplemente indica que la variable **`p`** se declara como puntero.
+
 Para pensar: ¿Qué valor tendrá la variable y luego de ejecutar el siguiente código?
 ```c
 int x = 3;
@@ -61,6 +77,7 @@ En el [Laboratorio 1](../Laboratorio_01/) se utilizaba la función **`fscanf()`*
 
 ### Constante nula de punteros (NULL)
 Siempre es buena idea dar un valor inicial a las variables apenas se declaran. Para punteros existe en C la constante **`NULL`** que representa una dirección de memoria nula, en la cual no se puede leer ni escribir. Esta constante es una macro definida en los headers de **[stdlib.h](https://www.tutorialspoint.com/c_standard_library/stdlib_h.htm)** como la dirección de memoria `0`.
+
 Recordar que si no se inicializa una variable esta puede contener cualquier valor, en el caso de enteros podría ser un número muy grande y extraño (o quizás un inofensivo 4) y en el caso de punteros puede tener asignada una dirección de memoria que en caso de querer escribir o leer de ella generaría problemas. Por ejemplo en el siguiente programa:
 ```c
 int *p;
@@ -68,6 +85,7 @@ int *p;
 ```
 
 es fácil imaginar que esto podría generar que el programa termine con un error (violación de segmento - *segmentation fault*) pero podría ser peor. Puede suceder que por azar en **`p`** se encuentre la dirección de memoria de otra variable del programa y la modifiquemos, generando un **BUG** muy difícil de rastrear.
+
 En esta otra versión:
 ```c
 int *p=NULL;
@@ -75,10 +93,11 @@ int *p=NULL;
 ```
 
 el programa siempre va a fallar, y eso es bueno.
+
 Claramente los ejemplos de arriba son errores que saltan a la vista pero sirven para ilustrar situaciones en la que no es tan obvio que se usa un puntero sin inicializar, pero el efecto es el mismo.
 
 ## Ejercicio 1:  Introducción de punteros
-la tarea de este ejercicio consiste en completar el archivo **[main.c](./ej1/main.c)** de manera tal que la salida del programa por pantalla sea la siguiente:
+La tarea de este ejercicio consiste en completar el archivo **[main.c](./ej1/main.c)** de manera tal que la salida del programa por pantalla sea la siguiente:
 ```bash
 x = 9
 m = (100, F)
@@ -193,6 +212,7 @@ end fun
 
 ## Ejercicio 3: Aprovechando punteros para eficiencia
 La intención del ejercicio es explorar la conveniencia de utilizar punteros para que los intercambios (*swaps*) sean más eficientes.
+
 Completar el archivo **[sort.c](./ej3/sort.c)** copiando código del *Ejercicio 3* del Laboratorio 3 realizando las modificaciones pertinentes para trabajar con arreglos de punteros a estructuras. Van a notar que en la nueva versión de **[player.h](./ej3/player.h)** se redefinió al tipo **`player_t`**,
 ```c
 typedef struct _player_t {
@@ -206,7 +226,9 @@ typedef struct _player_t {
 ```
 
 siendo entonces ahora **un puntero** a una estructura **`struct _player_t`**.
+
 Notar que la función **`main()`** muestra la cantidad de tiempo empleado en la ordenación.
+
 *¿Funciona más rápido la versión con punteros? ¿Por qué ahora son más eficientes los intercambios?*
 
 ## Preliminares: Punteros++
@@ -289,6 +311,7 @@ y = *p;
 </div>
 
 la primera asignación de **`p`** hace que apunte a la dirección de **`x`** que es **0x05**, luego a la variable y se le asigna el contenido que hay en la dirección de memoria **0x05** que es (en ese momento) el valor 3, luego se cambia el contenido de la memoria en la dirección **0x05** y se escribe el valor **7**.
+
 Para pensar: ¿Cuál sería el resultado de la expresión **`&p`**?
 
 ### Visualizando dirrecciones de memoria
@@ -301,6 +324,7 @@ printf("La dirección de memoria apuntada por p es: %p", (void *) p);
 ```
 
 Notar el casteo que se le realiza a **`p`** cuando se lo pasa como parámetro a **`printf()`**. Cuando antes de una expresión se introduce un tipo entre paréntesis, significa que <u>la expresión se va a convertir al tipo indicado</u>. Por ejemplo **(float) 2** hace que el resultado se interprete como **2.0f**, otro ejemplo puede ser **(int) 1.5** que hace que el resultado sea el entero **1**. En este caso se convierte a **`p`**, que es un **`int*`**, a un **`void*`** o sea un puntero a **`void`** lo cual es simplemente una dirección de memoria pura, puesto que un puntero a **`void`** no se puede desreferenciar.
+
 La salida del programa va a ser un número en hexadecimal (con prefijo 0x…), por ejemplo:
 ```bash
 La dirección de memoria apuntada por p es: 0x7ffd15a1ac60
@@ -349,6 +373,7 @@ p = arr; // Usando directamente el nombre de variable del arreglo
 </div>
 
 ¿Qué diferencia hay entre **`p`** y **`arr`**?
+
 Circunstancialmente se puede usar a **`p`** para acceder a los elementos del arreglo **`arr`** ya que **`p[i]`** y **`arr[i]`** van a devolver exactamente el mismo valor. Sin embargo, más adelante en el código se puede reutilizar a **`p`** para que apunte a otra variable, por ejemplo haciendo **`p = &x;`** (suponiendo que tenemos declarada a **`int x;`**). Por otro lado, aunque con la expresión **`arr`** obtenemos la dirección de memoria del primer elemento del arreglo, **`arr`** <u>no es un puntero</u> ya que no es posible hacer
 ```c
 int arr[4];
@@ -395,10 +420,9 @@ Por su parte la memoria en el Heap tiene disponible toda la memoria *RAM* de la 
 **a)** En el programa implementado en **[array.c](./ej4/a-array/array.c)** se inicializa en cero un arreglo **`arr`** (de forma muy rebuscada). Se debe reescribir la sección de código indicada para que mediante el puntero **`p`** se inicialice en cero el arreglo **`arr`** sin utilizar los operadores **`&`** y **`*`** en ningún momento.
 
 **b)** Programar la función
-
-    ```c
-    void set_name(name_t new_name, data_t *d);
-    ```
+```c
+void set_name(name_t new_name, data_t *d);
+```
 
 que debe cambiar el campo **`name`** de la estructura apuntada por **`d`** con el contenido de **`new_name`** y utilizarla para modificar la variable **`messi`** de tal manera que en su campo **`name`** contenga la cadena "**Lionel Messi**".
 
@@ -406,9 +430,10 @@ que debe cambiar el campo **`name`** de la estructura apuntada por **`d`** con e
 De manera similar a lo hecho para mostrar los tamaños de cada campo de la estructura, agregar un mensaje que muestre la dirección de memoria de cada campo. Se recomienda usar los dos tipos de visualizaciones explicadas anteriormente (direcciones e índices). Analizar la salida y responder: *¿Hay algo raro en las direcciones de memoria?*
 
 **d)** En el directorio **`static`** se encuentra el programa del Laboratorio 1 que carga en un arreglo en memoria estática desde un archivo. Completar en la carpeta **[dynamic](./ej4/d-dynamic/dynamic/)** la función **`array_from_file()`** de **[array_helpers.c](./ej4/d-dynamic/dynamic/array_helpers.c)**:
-    ```c
-    int *array_from_file(const char *filepath, size_t *length);
-    ```
+```c
+int *array_from_file(const char *filepath, size_t *length);
+```
+
 que carga los datos del archivo **filepath** devolviendo un puntero a memoria dinámica con los elementos del arreglo y dejando en **`*length`** la cantidad de elementos leídos. Completar además en **[main.c](./ej4/d-dynamic/dynamic/main.c)** el código necesario para liberar la memoria utilizada por el arreglo. Probar el programa con todos los archivos de la carpeta **[input](./ej4/d-dynamic/input/)** para asegurar el correcto funcionamiento (notar que la versión en **static** no funciona para todos los archivos de la carpeta **[input](./ej4/d-dynamic/input/)**).
 
 ## Preliminares: TADS
