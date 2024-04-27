@@ -586,3 +586,5 @@ Ahora se puede ejecutar el programa corriendo:
 ```
 
 siendo **<file>** alguno de los nombres de archivo dentro de la carpeta **[input](./ej7/input/)**. Asegurar que el valor de los promedios que se imprimen en pantalla sean correctos y animense a definir sus propios casos de *input*.
+
+<p align="right">Transcrito por: Alejandro Díaz</p>
