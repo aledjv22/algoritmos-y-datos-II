@@ -277,7 +277,7 @@ y = *p;
 ```
 
 <div align="center">
-  <img src="https://i.ibb.co/jWpzVk1/Captura-desde-2024-04-26-23-02-55.png" />
+  <img src="https://i.ibb.co/Rzyc02K/Captura-desde-2024-04-27-18-40-38.png" />
 </div>
 
 ```c
@@ -395,9 +395,11 @@ Por su parte la memoria en el Heap tiene disponible toda la memoria *RAM* de la 
 **a)** En el programa implementado en **[array.c](./ej4/a-array/array.c)** se inicializa en cero un arreglo **`arr`** (de forma muy rebuscada). Se debe reescribir la sección de código indicada para que mediante el puntero **`p`** se inicialice en cero el arreglo **`arr`** sin utilizar los operadores **`&`** y **`*`** en ningún momento.
 
 **b)** Programar la función
+
     ```c
     void set_name(name_t new_name, data_t *d);
     ```
+
 que debe cambiar el campo **`name`** de la estructura apuntada por **`d`** con el contenido de **`new_name`** y utilizarla para modificar la variable **`messi`** de tal manera que en su campo **`name`** contenga la cadena "**Lionel Messi**".
 
 **c)** Completar el archivo **[sizes.c](./ej4/c-sizes/sizes.c)** para que muestre el tamaño en *bytes* de cada miembro de la estructura **`data_t`** por separado y el <u>tamaño total</u> que ocupa la estructura en memoria. *¿La suma de los miembros coincide con el total? ¿El tamaño del campo **`name`** depende del nombre que contiene?*
@@ -448,7 +450,114 @@ operations
 **a)** Abrir la carpeta **[pair_a-tuple](./ej5/pair_a-tuple/)** y revisar la especificación del TAD en **[pair.h](./ej5/pair_a-tuple/pair.h)**. Luego crear el archivo **[pair.c](./ej5/pair_a-tuple/pair.c)** e implementar las funciones del TAD. Para probar la implementación usar el módulo **[main.c](./ej5/pair_a-tuple/main.c)** como programa de prueba.
 
 **b)** Abrir la carpeta **[pair_b-array](./ej5/pair_b-array/)** y revisar la nueva especificación del TAD en **[pair.h](./ej5/pair_b-array/pair.h)**. Crear el archivo **[pair.c](./ej5/pair_b-array/pair.c)** con la implementación de las funciones del TAD. Copiar el archivo **main.c** del apartado anterior al directorio **pair_b-array** y compilar.
-    1. ¿Por qué falla?
-    2. Hacer las modificaciones necesarias en **main.c** para que compile
-    3. *¿El diseño del TAD logra encapsulamiento? ¿Por qué sí? ¿Por qué no?*
+1. ¿Por qué falla?
+2. Hacer las modificaciones necesarias en **main.c** para que compile
+3. *¿El diseño del TAD logra encapsulamiento? ¿Por qué sí? ¿Por qué no?*
 
+**c)**  Abrir la carpeta **[pair_c-pointer](./ej5/pair_c-pointer/)** y revisar la especificación del TAD en **[pair.h](./ej5/pair_c-pointer/pair.h)**. Luego completar la implementación de las funciones y compilar usando el módulo **[main.c](./ej5/pair_c-pointer/main.c)** como programa de prueba. *¿La implementación logra encapsulamiento? ¿Por qué sí? ¿Por qué no?*
+
+> *❗Para definir constructores, destructores y operaciones de copia será necesario hacer manejo de **memoria dinámica** (pedir y liberar memoria en tiempo de ejecución). En este caso se necesita espacio suficiente para almacenar un valor de tipo **`struct _pair_t`**.*
+
+**d)** Abrir la carpeta **[pair_d-pointer](./ej5/pair_d-pointer/)** y revisar **[pair.h](./ej5/pair_d-pointer/pair.h)**. Copiar el archivo **[pair.c](./ej5/pair_c-pointer/pair.c)** del apartado anterior y agregar las definiciones necesarias para que compile con la nueva versión de **[pair.h](./ej5/pair_d-pointer/pair.h)**. *¿La implementación logra encapsulamiento?* Copiar el archivo **[main.c](./ej5/pair_c-pointer/main.c)** del apartado anterior y compilar. *¿Está bien que falle?* Hacer las modificaciones necesarias en **[main.c](./ej5/pair_d-pointer/main.c)** para que compile sin errores.
+
+**e)** Considerar la nueva especificación polimórfica para el TAD Pair:
+```pascal
+spec Pair of A where
+
+constructors
+  fun new(in x : A, in y : A) ret p : Pair of A
+  {- crea un par con componentes (x, y) -}
+
+destroy
+  proc destroy(in/out p : Pair of A)
+  {- libera memoria en caso que sea necesario -}
+
+operations
+  fun first(in p : Pair of A) ret x : A
+  {- devuelve el primer componente del par-}
+
+  fun second(in p : Pair of A) ret y : A
+  {- devuelve el segundo componente del par-}
+
+  fun swapped(in p : Pair of A) ret s : Pair of A
+  {- devuelve un nuevo par con los componentes de p intercambiados -}
+```
+
+¿Qué diferencia hay entre la especificación anterior y la que se encuentra en el **[pair.h](./ej5/pair_d-pointer/pair.h)** de la carpeta **[pair_d-pointer](./ej5/pair_d-pointer/)**? Copiar **[pair.c](./ej5/pair_d-pointer/pair.c)** del apartado anterior y modificarlo para utilizar la nueva interfaz especificada en **[pair.h](./ej5/pair_e-morf/pair.h)**. Pueden utilizar el **[main.c](./ej5/pair_d-pointer/main.c)** del apartado anterior para compilar.
+
+## Ejercicio 6:  TAD Contador
+Dentro de la carpeta **[ej6](./ej6/)** se encuentran los siguientes archivos:
+
+| Archivo | Descripción |
+| ------------ | ------------ |
+| **[counter.h](./ej6/counter.h)** | Contiene la especificación del TAD Contador. |
+| **[counter.c](./ej6/counter.c)** | Contiene la implementación del TAD Contador. |
+| **[main.c](./ej6/main.c)** | Contiene al programa principal que lee uno a uno los caracteres de un archivo chequeando si los paréntesis están balanceados. |
+
+**a)** Implementar el TAD Contador. Para ello deben abrir **[counter.c](./ej6/counter.c)** y programar cada uno de los constructores y operaciones cumpliendo la especificación dada en **[counter.h](./ej6/counter.h)**. Recordar que deben verificar en **[counter.c](./ej6/counter.c)** todas las precondiciones especificadas en **[counter.h](./ej6/counter.h)** usando llamadas a la función **`assert()`**.
+
+**b)** Usar el TAD Contador para chequear paréntesis balanceados. Para ello deben abrir el archivo **[main.c](./ej6/main.c)** y entender qué es lo que hace la función **`matching_parentheses()`** y completar con llamadas al constructor y destructor del contador donde consideren necesario. ¡Es muy importante llamar al destructor del TAD una vez este no sea necesario para poder liberar el espacio de memoria que tiene asignado!
+
+Una vez implementados los incisos **(a)**, **(b)** compilar ejecutando:
+```bash
+gcc -Wall -Werror -Wextra -pedantic -std=c99 -c counter.c main.c
+gcc -Wall -Werror -Wextra -pedantic -std=c99 counter.o main.o -o counter
+```
+
+Ahora se puede ejecutar el programa corriendo:
+```bash
+./counter input/<file>.in
+```
+
+siendo **<file>** alguno de los nombres de archivo dentro de la carpeta **[input](./ej6/input/)**. Asegurarse que para aquellos archivos con paréntesis balanceados, al ejecutar el programa se imprima en pantalla
+```bash
+Parentheses match.
+```
+
+y para aquellos con paréntesis no balanceados imprima
+```bash
+Parentheses mismatch.
+```
+
+## Ejercicio 7:  TAD Lista
+Dentro de la carpeta **[ej7](./ej7/)** se encuentran los siguientes archivos:
+
+| Archivo | Descripción |
+| ------------ | ------------ |
+| **[main.c](./ej7/main.c)** | Contiene al programa principal que lee los números de un archivo para ser cargados en nuestra lista y obtener el promedio. |
+| **[array_helpers.h](./ej7/array_helpers.h)** | Contiene descripciones de funciones auxiliares para manipular arreglos. |
+| **[array_helpers.c](./ej7/array_helpers.c)** | Contiene implementaciones de dichas funciones. |
+
+**a)** Crear un archivo **[list.h](./ej7/list.h)**, especificando allí todos los constructores y operaciones vistos sobre el TAD Lista [en el teórico](https://famaf.aulavirtual.unc.edu.ar/pluginfile.php/33658/course/section/2078/05.tipos.abstractos.pdf). Recomendamos definir el nombre del TAD como **`list`** ya que en el archivo **[main.c](./ej7/main.c)** se encuentra mencionado de esa manera.
+
+Existe un par de diferencias entre nuestro TAD Lista en C respecto al visto en el teórico. Para simplificar la implementación, nuestras listas serán solamente de tipo **`int`**, es decir, no hay polimorfismo. Si bien el tipo será fijo (**`int`**), una buena idea es definir un tipo en **[list.h](./ej7/list.h)** usando **`typedef`**. Un ejemplo de esto sería definir
+```c
+typedef int list_elem;
+```
+
+y utilizar **`list_elem`** en vez de **`int`** en todos los constructores/operaciones (al estilo de lo realizado en el ejercicio **5e** ).
+
+Otra diferencia con el teórico es que aquellos procedimientos que modifiquen la lista deben escribirse como funciones que devuelvan la lista resultante. Como ya fue mencionado, esto es para evitar tener que simular parámetros de salida.
+
+No olvidar que:
+
+- Garantizar encapsulamiento en tu TAD.
+- Especificar una función de destrucción y copia.
+- Especificar las precondiciones.
+
+b) Crear un archivo **[list.c](./ej7/list.c)**, e **<u>implementar</u>** cada uno de los constructores y operaciones declaradas en el archivo **[list.h](./ej7/list.h)** . La implementación debe ser como se presenta en el teórico, es decir, utilizando punteros (listas enlazadas).
+
+c) Abrir el archivo **[main.c](./ej7/main.c)** e implementar las funciones **`array_to_list()`** y **`average()`**. Para la implementación de **`average()`** se sugiere revisar la definición del teórico.
+
+Una vez implementados los incisos **a)**, **b)** y **c)**, compilar ejecutando:
+```bash
+gcc -Wall -Werror -Wextra -pedantic -std=c99 -c list.c array_helpers.c main.c
+gcc -Wall -Werror -Wextra -pedantic -std=c99 list.o array_helpers.o main.o -o average
+```
+
+Ahora se puede ejecutar el programa corriendo:
+```bash
+./average input/<file>.in
+```
+
+siendo **<file>** alguno de los nombres de archivo dentro de la carpeta **[input](./ej7/input/)**. Asegurar que el valor de los promedios que se imprimen en pantalla sean correctos y animense a definir sus propios casos de *input*.
