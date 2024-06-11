@@ -2,20 +2,26 @@
 #include <stdio.h>
 #include <assert.h>
 
-void absolute(int x, int *y) {
-    //
-    // Completar aquí
-    //
+void absolute(int x, int *y)
+{
+    if (x >= 0)
+    {
+        *y = x;
+    }
+    else
+    {
+        *y = -x;
+    }
 }
 
-int main(void) {
-    int a=0, res=0;  // No modificar esta declaración
-    // --- No se deben declarar variables nuevas ---
-
-    //
-    // Completar aquí
-    //
+int main(void)
+{
+    int a=0, res=0;
+    a = -10;
+    absolute(a, &res);
+    printf("El valor absoluto de %d es %d.\n", a, res);
     assert(res >= 0 && (res == a || res == -a));
+    res = 0;
     return EXIT_SUCCESS;
 }
 
