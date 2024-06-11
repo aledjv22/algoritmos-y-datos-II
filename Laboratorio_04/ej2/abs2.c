@@ -25,3 +25,9 @@ int main(void)
     return EXIT_SUCCESS;
 }
 
+/*
+    El parámetro  int *y de absolute() es de tipo in/out.
+    Para el parámetro in: int a.
+    Para el parámetro out: return res.
+    Para el parámetro in/out: int *y.
+*/
