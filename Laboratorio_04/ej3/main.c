@@ -20,7 +20,8 @@
  * @brief print usage help
  * @param[in] program_name Executable name
  */
-void print_help(char *program_name) {
+void print_help(char *program_name)
+{
     /* Print the usage help of this program. */
     printf("Usage: %s <input file path>\n\n"
            "Sort an array given in a file in disk.\n"
@@ -43,11 +44,13 @@ void print_help(char *program_name) {
  *
  * @return An string containing read filepath
  */
-char *parse_filepath(int argc, char *argv[]) {
+char *parse_filepath(int argc, char *argv[])
+{
     /* Parse the filepath given by command line argument. */
     char *result = NULL;
 
-    if (argc < 2) {
+    if (argc < 2)
+    {
         print_help(argv[0]);
         exit(EXIT_FAILURE);
     }
@@ -65,7 +68,8 @@ char *parse_filepath(int argc, char *argv[]) {
  *
  * @return EXIT_SUCCESS when programs executes correctly, EXIT_FAILURE otherwise
  */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     char *filepath = NULL;
     player_t atp[MAX_PLAYERS];
 
