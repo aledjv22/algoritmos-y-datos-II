@@ -24,8 +24,10 @@ int main(void) {
     // Se pueden agregar cosas antes del `for` de ser necesario
     //
     for (unsigned int i=0u; i < ARRAY_SIZE; i++) {
-        p = &arr[i];  // FIXME: Se usa operador &
-        *p = 0;       // FIXME: Se usa operador *
+        // p = &arr[i];  // FIXME: Se usa operador &
+        p = arr + i; // Sin usar operador &
+        // *p = 0;       // FIXME: Se usa operador *
+        p[0] = 0; // Sin usar operador *
     }
     /* -------------------------------------------------------------------- */
     printf("after : ");
