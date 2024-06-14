@@ -4,23 +4,27 @@
 #include "data.h"
 
 void
-print_data(data_t d) {
+print_data(data_t d)
+{
     printf("NOMBRE: %s\n"
            "EDAD  : %d años\n"
            "ALTURA: %d cm\n\n",
            d.name, d.age, d.height);
 }
 
-void set_name(name_t new_name, data_t *d) {
+void set_name(name_t new_name, data_t *d)
+{
     unsigned int i = 0;
-    while (new_name[i] != '\0') {
+    while (new_name[i] != '\0')
+    {
         d->name[i] = new_name[i];
         i++;
     }
     d->name[i] = '\0';
 }
 
-int main(void) {
+int main(void)
+{
 
     data_t messi = {"Leo Messi", 36, 169};
     print_data(messi);
